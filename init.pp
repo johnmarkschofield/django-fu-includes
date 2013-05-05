@@ -46,7 +46,7 @@ exec {'create_www_virtualenv':
     group => vagrant,
     path => '/usr/local/bin',
     creates => '/home/vagrant/www',
-    require => [Exec['update-packages'], Exec['inst_virtualenv']],
+    require => [Exec['update-packages'], Exec['inst_virtualenv'], Exec['fix_permissions_python']],
 }
 
 package {"git":
