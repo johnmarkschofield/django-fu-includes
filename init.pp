@@ -12,13 +12,20 @@ stage {'middle':
 }
 
 stage {'last':
-    after => Stage['middle']
+    after => Stage['middle'],
 }
 
 
 
+class {
+    "init: stage => 'init';
+    "first": stage => 'first';
+    "middle": stage => 'middle';
+    "last": stage => 'last';
+}
+
+
 class {'init':
-    stage => init,
 
     exec { "update-package-list":
         command => "apt-get update",
@@ -37,7 +44,6 @@ class {'init':
 
 
 class {'first':
-    stage => first,
 
     package { "build-essential":
         ensure => installed,
@@ -81,13 +87,11 @@ class {'first':
 
     service {'supervisor':
         ensure => running,
-        require => File['/etc/supervisor/conf.d/www.conf'],
     }
 }
 
 
 class {'middle':
-    stage => middle,
 
     exec {"inst_virtualenv":
         command => 'pip install virtualenv',
