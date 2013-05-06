@@ -74,6 +74,11 @@ class first {
         ensure => installed,
     }
 
+}
+
+
+class middle {
+
     service {'postgresql':
         ensure => running,
     }
@@ -81,10 +86,6 @@ class first {
     service {'supervisor':
         ensure => running,
     }
-}
-
-
-class middle {
 
     exec {"inst_virtualenv":
         command => 'pip install virtualenv',
