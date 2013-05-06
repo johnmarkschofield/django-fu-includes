@@ -18,7 +18,7 @@ node default {
 
 }
 
-class { 'init':
+class init {
 
     exec { "update-package-list":
         command => "apt-get update",
@@ -36,7 +36,7 @@ class { 'init':
 }
 
 
-class { 'first':
+class first {
 
     package { "build-essential":
         ensure => installed,
@@ -84,7 +84,7 @@ class { 'first':
 }
 
 
-class {'middle':
+class middle {
 
     exec {"inst_virtualenv":
         command => 'pip install virtualenv',
@@ -120,7 +120,7 @@ class {'middle':
 
 
 
-class {'last':
+class last {
 
     exec {"fix_permissions_python":
         command => "chmod -R a+r /usr/local/lib/",
