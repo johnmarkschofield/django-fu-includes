@@ -1,31 +1,24 @@
-stage { 'init':
-    before => Stage['first']
+
+node default {
+
+  # declare stage orders
+  stage { 'A' : before  => Stage['B'] }
+  stage { 'B' : require => Stage['A'] }
+  stage { 'C' : require => Stage['B'] }
+  stage { 'D' : require => Stage['C'] }
+
+
+  # set class stages
+  class {
+    'init'   : stage => A;
+    'first'  : stage => B;
+    'middle' : stage => C;
+    'last'   : stage => D;
+  }
+
 }
 
-stage { 'first':
-    before => Stage['middle'],
-}
-
-stage {'middle':
-    after => Stage['first'],
-    before => Stage['last'],
-}
-
-stage {'last':
-    after => Stage['middle'],
-}
-
-
-
-class {
-    "init: stage => 'init';
-    "first": stage => 'first';
-    "middle": stage => 'middle';
-    "last": stage => 'last';
-}
-
-
-class {'init':
+class { 'init':
 
     exec { "update-package-list":
         command => "apt-get update",
@@ -43,7 +36,7 @@ class {'init':
 }
 
 
-class {'first':
+class { 'first':
 
     package { "build-essential":
         ensure => installed,
