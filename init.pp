@@ -98,7 +98,6 @@ class middle {
         mode => 0640,
         backup => false,
         notify => Service['postgresql'],
-        require => Package['postgresql'],
     }
 
     file {'/etc/supervisor/conf.d/www.conf':
@@ -107,7 +106,6 @@ class middle {
         owner => root,
         group => root,
         mode => 0755,
-        require => Package['supervisor'],
         notify => Service['supervisor'],
     }
 
