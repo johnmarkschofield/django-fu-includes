@@ -26,11 +26,13 @@ class init {
     }
 
     exec { "update-packages":
-        command => 'DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade',
+        command => 'DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade',
         require => Exec["update-package-list"],
         path => "/usr/bin",
         provider => shell,
         logoutput => "on_failure",
+        user => root,
+        group => root
     }
 
 }
