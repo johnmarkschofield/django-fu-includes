@@ -42,6 +42,14 @@ class first {
         ensure => installed,
     }
 
+    package {"curl":
+        ensure => installed,
+    }
+
+    package {"emacs23-nox":
+        ensure => installed,
+    }
+
     package {"python-pip":
         ensure => installed,
     }
