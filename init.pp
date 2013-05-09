@@ -33,6 +33,7 @@ class init {
         logoutput => "on_failure",
         user => root,
         group => root,
+        timeout => 900,
     }
 
     package {'puppet':
@@ -151,6 +152,7 @@ class last {
         user => vagrant,
         group => vagrant,
         require => Exec["create_www_virtualenv"],
+        timeout => 900,
     }
 
     exec{'create-database':
