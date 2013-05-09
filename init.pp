@@ -33,7 +33,7 @@ class init {
         logoutput => "on_failure",
         user => root,
         group => root,
-        shell => '/bin/bash',
+        provider => shell,
     }
 
 }
