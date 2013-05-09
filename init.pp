@@ -28,12 +28,15 @@ class init {
     exec { "update-packages":
         command => 'DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade > /root/aptoutput.txt 2>&1',
         require => Exec["update-package-list"],
-        path => "/usr/bin",
+        path => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
         provider => shell,
         logoutput => "on_failure",
         user => root,
         group => root,
-        provider => shell,
+    }
+
+    package {'puppet':
+        ensure => installed,
     }
 
 }
@@ -57,9 +60,6 @@ class first {
         ensure => installed,
     }
 
-    package {'puppet':
-        ensure => installed,
-    }
 
     package {"git":
         ensure => installed,
