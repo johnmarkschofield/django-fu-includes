@@ -26,7 +26,7 @@ class init {
     }
 
     exec { "update-packages":
-        command => 'DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade > /root/aptoutput.txt 2>&1',
+        command => 'DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade',
         require => Exec["update-package-list"],
         path => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
         provider => shell,
