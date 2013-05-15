@@ -86,6 +86,9 @@ class first {
         ensure => installed,
     }
 
+    exec{"/usr/bin/wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | /bin/sh"
+    }
+
 }
 
 
