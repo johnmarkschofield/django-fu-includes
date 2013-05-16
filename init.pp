@@ -127,7 +127,7 @@ class middle {
         notify => Service['supervisor'],
     }
 
-    file {'/vagrant/vagrant_runlocal.bash':
+    file {'/vagrant/devserver/runlocal.bash':
         mode => 0755,
         backup => false,
     }
