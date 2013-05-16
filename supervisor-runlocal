@@ -1,5 +1,5 @@
 [program:www]
-command=/vagrant/vagrant_runlocal.bash
+command=/vagrant/devserver/runlocal.bash
 autostart=true
 stdout_logfile=/vagrant/devserver/runlocal_stdout.log
 stderr_logfile=/vagrant/devserver/runlocal_stderr.log
