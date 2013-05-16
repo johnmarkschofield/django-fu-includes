@@ -7,7 +7,7 @@ do
     while read line
     do
         eval export $line
-    done < SETTINGSFILE
+    done < $SETTINGSFILE
 done
 
 cd /vagrant
