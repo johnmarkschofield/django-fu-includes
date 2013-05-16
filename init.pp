@@ -159,7 +159,7 @@ class last {
     }
 
     exec{'create-database':
-        command => 'psql -U postgres -l | grep www || bash /vagrant/mhbp_reset_local_db.bash',
+        command => 'psql -U postgres -l | grep www || bash /vagrant/devserver/resetdb_local.bash',
         path => '/usr/bin:/bin',
         require => Exec['install_requirements'],
     }
