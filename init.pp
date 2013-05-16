@@ -89,11 +89,7 @@ class first {
     exec{"/usr/bin/wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | /bin/sh":
     }
 
-    # Fix vbox guest additions not installed because of kernel upgrade
-    exec {"/etc/init.d/vboxadd setup":
-        user => root,
-        group => root,
-    }
+
 
 }
 
@@ -136,6 +132,11 @@ class middle {
         backup => false,
     }
 
+    # Fix vbox guest additions not installed because of kernel upgrade
+    exec {"/etc/init.d/vboxadd setup":
+        user => root,
+        group => root,
+    }
 }
 
 
