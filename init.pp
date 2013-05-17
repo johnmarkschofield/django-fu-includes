@@ -128,7 +128,7 @@ class middle {
         path => "/usr/bin",
     }
 
-    file {'/etc/postgresql/9.1/main/pg_hba.conf':
+    file {'/etc/postgresql/9.2/main/pg_hba.conf':
         source => '/vagrant/devserver/pg_hba.conf',
         owner => postgres,
         group => postgres,
