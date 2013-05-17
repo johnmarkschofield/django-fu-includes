@@ -22,6 +22,7 @@ class init {
 
     exec { "update-package-list":
         command => "apt-get update",
+        require => File['/etc/apt/sources.list'],
         path => "/usr/bin",
     }
 
@@ -38,9 +39,16 @@ class init {
 
     package {'puppet':
         ensure => installed,
+        require => Exec['update-package-list'],
     }
 
-}
+    file{'/etc/apt/sources.list':
+        source => '/vagrant/devserver/sources.list',
+        owner => root,
+        group => root,
+        mode => 0644,
+        backup => false,
+    }
 
 
 class first {
@@ -61,7 +69,6 @@ class first {
         ensure => installed,
     }
 
-
     package {"git":
         ensure => installed,
     }
@@ -74,11 +81,15 @@ class first {
         ensure => installed,
     }
 
-    package {"postgresql":
+    package {"postgresql-9.2":
         ensure => installed,
     }
 
-    package {'postgresql-server-dev-all':
+    package {'postgresql-client-9.2':
+        ensure => installed,
+    }
+
+    package {'postgresql-server-dev-9.2':
         ensure => installed,
     }
 
@@ -88,9 +99,6 @@ class first {
 
     exec{"/usr/bin/wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | /bin/sh":
     }
-
-
-
 }
 
 
@@ -131,7 +139,6 @@ class middle {
         mode => 0755,
         backup => false,
     }
-
 }
 
 
