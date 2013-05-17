@@ -49,7 +49,7 @@ class init {
         mode => 0644,
         backup => false,
     }
-
+}
 
 class first {
 
@@ -178,12 +178,5 @@ class last {
         require => Exec['create-database'],
     }
 }
-
-
-
-
-
-
-
 
 
