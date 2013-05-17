@@ -42,12 +42,23 @@ class init {
         require => Exec['update-package-list'],
     }
 
+    exec {'install_postgres_apt_key':
+        command => 'wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -',
+        path => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        provider => shell,
+        logoutput => "on_failure",
+        user => root,
+        group => root,
+        timeout => 900,
+}
+
     file{'/etc/apt/sources.list':
         source => '/vagrant/devserver/sources.list',
         owner => root,
         group => root,
         mode => 0644,
         backup => false,
+        require => Exec['install_postgres_apt_key'],
     }
 }
 
