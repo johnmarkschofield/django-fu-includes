@@ -24,5 +24,4 @@ fi
 
 psql -U postgres -c "create database www;"
 
-/home/vagrant/www/bin/python /vagrant/manage.py createdb --noinput --nodata
-
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d www /vagrant/prod.dump
