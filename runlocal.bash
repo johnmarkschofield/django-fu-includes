@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /vagrant/settings
+cd /vagrant/hfu_settings
 
 for SETTINGSFILE in settings_all settings_auth_local settings_local
 do
