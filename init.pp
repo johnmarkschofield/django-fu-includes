@@ -178,15 +178,15 @@ class last {
         timeout => 900,
     }
 
-    exec{'create-database':
-        command => 'psql -U postgres -l | grep -q www || bash /vagrant/devserver/resetdb_local.bash',
+    exec{'reset-database':
+        command => 'bash /vagrant/devserver/resetdb_local.bash',
         path => '/usr/bin:/bin',
         require => Exec['install_requirements'],
     }
 
     exec {"run_www":
         command => "/usr/bin/supervisorctl update ; /usr/bin/supervisorctl start www",
-        require => Exec['create-database'],
+        require => Exec['reset-database'],
     }
 }
 
