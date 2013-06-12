@@ -37,7 +37,12 @@ class init {
         timeout => 900,
     }
 
-    package {'puppet':
+    package {'memcached':
+        ensure => installed,
+        require => Exec['update-package-list'],
+    }
+
+    package {'libmemcached-dev':
         ensure => installed,
         require => Exec['update-package-list'],
     }
