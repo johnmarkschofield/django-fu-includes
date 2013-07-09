@@ -14,6 +14,6 @@ fi
 
 set -e
 
-createdb -U postgres www
+createdb -U postgres -E UTF-8 www
 
 pg_restore --verbose --no-acl --no-owner -h localhost -U postgres -d www /vagrant/prod.dump

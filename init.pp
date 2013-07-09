@@ -55,7 +55,7 @@ class init {
         user => root,
         group => root,
         timeout => 900,
-}
+    }
 
     file{'/etc/apt/sources.list':
         source => '/vagrant/devserver/sources.list',
@@ -65,6 +65,16 @@ class init {
         backup => false,
         require => Exec['install_postgres_apt_key'],
     }
+
+    exec{'/usr/sbin/locale-gen en_US.UTF-8':
+        user => root,
+        group => root,
+        }
+
+    exec{'update-locale LANG=en_US.UTF-8':
+        user => root,
+        group => root,
+        }
 }
 
 class first {
