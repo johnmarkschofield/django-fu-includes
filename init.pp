@@ -71,7 +71,7 @@ class init {
         group => root,
         }
 
-    exec{'update-locale LANG=en_US.UTF-8':
+    exec{'/usr/sbin/update-locale LANG=en_US.UTF-8':
         user => root,
         group => root,
         }
