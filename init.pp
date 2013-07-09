@@ -66,17 +66,6 @@ class init {
         require => Exec['install_postgres_apt_key'],
     }
 
-    exec{'locale-gen':
-        command => '/usr/sbin/locale-gen en_US.UTF-8'
-        user => root,
-        group => root,
-        }
-
-    exec{'/usr/sbin/update-locale LANG=en_US.UTF-8':
-        user => root,
-        group => root,
-        require => Exec['locale-gen'],
-        }
 }
 
 class first {
@@ -131,6 +120,13 @@ class first {
 
 
 class middle {
+
+    exec { 'utf8 postgres':
+        command => 'pg_dropcluster --stop 9.1 main ; pg_createcluster --start --locale en_US.UTF-8 9.1 main',
+        unless  => 'sudo -u postgres psql -t -c "\l" | grep template1 | grep -q UTF',
+        path    => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
+    }
+
 
     service {'postgresql':
         ensure => running,
