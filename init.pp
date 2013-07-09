@@ -66,7 +66,8 @@ class init {
         require => Exec['install_postgres_apt_key'],
     }
 
-    exec{'/usr/sbin/locale-gen en_US.UTF-8':
+    exec{'locale-gen':
+        command => '/usr/sbin/locale-gen en_US.UTF-8'
         user => root,
         group => root,
         }
@@ -74,6 +75,7 @@ class init {
     exec{'/usr/sbin/update-locale LANG=en_US.UTF-8':
         user => root,
         group => root,
+        require => Exec['locale-gen'],
         }
 }
 
