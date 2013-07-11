@@ -9,7 +9,6 @@ if [ "$1" =  "prod" ]; then
         while read line
         do
             eval export $line
-            echo eval export $line
         done < $SETTINGSFILE
     done
 elif [ "$1" = "test" ]; then
@@ -19,7 +18,6 @@ elif [ "$1" = "test" ]; then
         while read line
         do
             eval export $line
-            echo eval export $line
         done < $SETTINGSFILE
     done
 elif [ "$1" = "staging" ]; then
@@ -29,7 +27,6 @@ elif [ "$1" = "staging" ]; then
         while read line
         do
             eval export $line
-            echo eval export $line
         done < $SETTINGSFILE
     done
 else
