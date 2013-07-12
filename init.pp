@@ -122,7 +122,7 @@ class first {
 class middle {
 
     exec { 'utf8 postgres':
-        command => 'pg_dropcluster --stop 9.1 main ; pg_createcluster --start --locale en_US.UTF-8 9.1 main',
+        command => 'pg_dropcluster --stop 9.2 main ; pg_createcluster --start --locale en_US.UTF-8 9.2 main',
         unless  => 'sudo -u postgres psql -t -c "\l" | grep template1 | grep -q UTF',
         path    => ['/bin', '/sbin', '/usr/bin', '/usr/sbin'],
     }
