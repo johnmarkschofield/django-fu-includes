@@ -90,6 +90,10 @@ class first {
         ensure => installed,
     }
 
+    package {"puppet":
+        ensure => installed,
+    }
+
     package {"libevent-dev":
         ensure => installed,
     }
