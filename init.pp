@@ -152,6 +152,7 @@ class middle {
         mode => 0640,
         backup => false,
         notify => Service['postgresql'],
+        require => Exec['utf8 postgres'],
     }
 
     file {'/etc/supervisor/conf.d/www.conf':
