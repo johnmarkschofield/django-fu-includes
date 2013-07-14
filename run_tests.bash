@@ -22,8 +22,8 @@ cd /home/vagrant/testing
 sleep 5
 curl -o /dev/null http://$HOST
 wget -e robots=off --recursive -N --page-requisites \
-    --span-hosts -H -Ds'amazonaws.com,$HOST' --no-remove-listing  \
+    --span-hosts -H -Ds"amazonaws.com,$HOST" --no-remove-listing  \
     --level=inf --no-directories --save-headers --tries 1 https://$HOST
 echo wget -e robots=off --recursive -N --page-requisites \
-    --span-hosts -H -Ds'amazonaws.com,$HOST' --no-remove-listing  \
+    --span-hosts -H -Ds"amazonaws.com,$HOST" --no-remove-listing  \
     --level=inf --no-directories --save-headers --tries 1 https://$HOST
